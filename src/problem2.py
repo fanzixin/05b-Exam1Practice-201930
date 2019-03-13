@@ -103,7 +103,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -113,6 +113,7 @@ def problem2a(circle, rectangle, window):
     # -------------------------------------------------------------------------
     circle.attach_to(window)
     rectangle.attach_to(window)
+    window.render()
     window.continue_on_mouse_click()
 
     start_x = max(rectangle.corner_1.x, rectangle.corner_2.x)
@@ -121,8 +122,13 @@ def problem2a(circle, rectangle, window):
     end_y = max(rectangle.corner_1.y, rectangle.corner_2.y)
 
     line = rg.Line(rg.Point(start_x, start_y), rg.Point(end_x, end_y))
-    line.arrow = 'arrow'
+    line.arrow = 'last'
     line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    window.render()
 
 
 def run_test_problem2b():
@@ -187,7 +193,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -195,6 +201,23 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # -------------------------------------------------------------------------
+    rect.attach_to(win)
+
+    upper_x = min(rect.corner_1.x, rect.corner_2.x)
+    upper_y = min(rect.corner_1.y, rect.corner_2.y)
+    lower_x = max(rect.corner_1.x, rect.corner_2.x)
+    lower_y = max(rect.corner_1.y, rect.corner_2.y)
+
+    for _ in range(n-1):
+        upper_x = upper_x - delta
+        upper_y = upper_y - delta
+        lower_x = lower_x + delta
+        lower_y = lower_y + delta
+
+        rectangle = rg.Rectangle(rg.Point(upper_x, upper_y), rg.Point(lower_x, lower_y))
+        rectangle.attach_to(win)
+
+    win.render()
 
 
 # -----------------------------------------------------------------------------
