@@ -389,6 +389,8 @@ def problem1c(n):
     #    TIME ESTIMATE:   15 to 20 minutes.
     # -------------------------------------------------------------------------
 
+    for
+
 
 ###############################################################################
 # Our tests use the following to print error messages in red.
